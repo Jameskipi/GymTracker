@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymTracker.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Label
+                Text="GymTracker"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+            <Entry Placeholder="Login" 
+                   Style="{StaticResource Entry}"
+                   SemanticProperties.HeadingLevel="Level2"/>
+
+            <Entry Placeholder="Password" 
+                Style="{StaticResource Entry}"
+                SemanticProperties.HeadingLevel="Level2"/>
+
+            <Button
+                x:Name="CounterBtn"
+                Text="Sign In" 
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
