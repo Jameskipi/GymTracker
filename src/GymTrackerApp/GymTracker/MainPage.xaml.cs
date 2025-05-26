@@ -1,24 +1,22 @@
-﻿namespace GymTracker
+﻿using System.Threading.Tasks;
+
+namespace GymTracker
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object? sender, EventArgs e)
+        private async Task Submit()
         {
-            count++;
+            await Shell.Current.GoToAsync("//HomePage");
+        }
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+        private async void OnSubmitClicked(object sender, EventArgs e)
+        {
+            await Submit();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using GymTracker.Pages;
+using Microsoft.Extensions.Logging;
 
 namespace GymTracker
 {
@@ -17,8 +18,9 @@ namespace GymTracker
 
 #if DEBUG
     		builder.Logging.AddDebug();
-#endif
-
+#endif      
+            builder.Services.AddTransient<HomePage>();
+            builder.Services.AddTransient<HomeViewModel>();
             return builder.Build();
         }
     }
