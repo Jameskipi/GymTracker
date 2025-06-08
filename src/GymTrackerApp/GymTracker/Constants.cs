@@ -10,5 +10,6 @@ namespace GymTracker
     {
         public static Database.AppDatabase appDatabase = new Database.AppDatabase();
         public static int currentUserID = -1;
+        public static int currentWorkoutID = -1;
     }
 }

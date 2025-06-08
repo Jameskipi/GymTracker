@@ -45,6 +45,17 @@
                 Fill="Black"
                 HeightRequest="1"/>
 
+            <VerticalStackLayout x:Name="HistoryBox">
+                <Button
+                    x:Name="HistoryButton"
+                    Text="Show History"
+                    Clicked="CreateHistoryWorkouts"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Padding="16, 15"
+                    Margin="20, 40, 20, 20"/>
+            </VerticalStackLayout>
+
 
         </VerticalStackLayout>
     </ScrollView>
