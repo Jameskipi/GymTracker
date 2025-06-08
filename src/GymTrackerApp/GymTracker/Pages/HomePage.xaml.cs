@@ -82,7 +82,9 @@ public partial class HomePage : ContentPage
         int workoutid = Convert.ToInt32(((Button)sender).StyleId.Replace("WorkoutButton", string.Empty));
 
         Constants.currentWorkoutID = workoutid;
-        await DisplayAlert("Error", $"Workout {Constants.currentWorkoutID}", "OK");
+        Constants.currentWorkoutName = ((Button)sender).Text;
+
+        await Shell.Current.GoToAsync("//ExercisePage");
     }
 
     private async void OnAddWorkoutClicked(object sender, EventArgs e)
@@ -109,6 +111,42 @@ public partial class HomePage : ContentPage
         {
             await AddWorkoutButton.ScaleTo(1.1, 500, Easing.CubicInOut);
             await AddWorkoutButton.ScaleTo(1.0, 500, Easing.CubicInOut);
+        }
+    }
+
+    private async void RemoveWorkout(object sender, EventArgs e)
+    {
+        int id = Convert.ToInt32(((Button)sender).StyleId.Replace("WorkoutButton", ""));
+        await Constants.appDatabase.RemoveWorkoutAsync(id);
+
+        OnRemoveWorkoutClicked(sender, e);
+        CreateTodayWorkouts();
+    }
+
+    private async void OnRemoveWorkoutClicked(object sender, EventArgs e)
+    {
+        foreach (Button button in TodayBox.Children)
+        {
+            if (button.TextColor == Colors.Red)
+            {
+                button.Text = button.Text[3..];
+                button.TextColor = Colors.Blue;
+                button.Clicked -= RemoveWorkout;
+                button.Clicked += OnWorkoutButtonClicked;
+
+                RemoveWorkoutButton.Text = "- Remove workout";
+                RemoveWorkoutButton.TextColor = Colors.White;
+            }
+            else
+            {
+                button.Text = " - " + button.Text;
+                button.TextColor = Colors.Red;
+                button.Clicked -= OnWorkoutButtonClicked;
+                button.Clicked += RemoveWorkout;
+
+                RemoveWorkoutButton.Text = "Cancel";
+                RemoveWorkoutButton.TextColor = Colors.Red;
+            }
         }
     }
 }

@@ -22,6 +22,10 @@ namespace GymTracker
 #endif      
             builder.Services.AddTransient<HomePage>();
             builder.Services.AddTransient<HomeViewModel>();
+
+            builder.Services.AddTransient<ExercisePage>();
+            builder.Services.AddTransient<ExerciseViewModel>();
+
             return builder.Build();
         }
     }

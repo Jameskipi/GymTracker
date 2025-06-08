@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymTracker.Pages.ExercisePage"
+             Shell.NavBarIsVisible="False">
+    
+    <VerticalStackLayout>
+
+        <Button
+            x:Name="ReturnButton"
+            Text="&lt;"
+            Clicked="OnReturnClicked"
+            VerticalOptions="Center"
+            HorizontalOptions="Start"
+            Padding="16, 15"
+            Margin="20, 20, 20, 20"/>
+
+        <Rectangle HorizontalOptions="Fill" 
+            Fill="Black"
+            HeightRequest="1"/>
+
+        <Border Stroke="Blue"
+            StrokeThickness="4"
+            StrokeShape="RoundRectangle 10,10,10,10"
+            Background="LightBlue"
+            Padding="16,15"
+            Margin="20, 20, 20, 20"
+            HorizontalOptions="Center">
+            
+            <Label
+                x:Name="ExerciseLabel"
+                Text="Exercise"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontSize="15"/>
+        </Border>
+
+        <Label
+            x:Name="ProgressLabel"
+            Text="Overall progress:"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontSize="10"/>
+
+        <Border Stroke="Blue"
+            StrokeThickness="2"
+            StrokeShape="RoundRectangle 10,10,10,10"
+            Margin="20, 0, 20, 20">
+            
+            <ProgressBar Progress="0.5"
+                     ProgressColor="GreenYellow"
+                     ScaleY="5"/>
+        </Border>
+
+        <Rectangle HorizontalOptions="Fill" 
+            Fill="Black"
+            HeightRequest="1"/>
+
+        <VerticalStackLayout x:Name="ExerciseBox"></VerticalStackLayout>
+
+        <Button
+            x:Name="AddExerciseButton"
+            Text="+ Add exercise"
+            Clicked="OnAddExerciseClicked"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Padding="16, 15"
+            Margin="20, 20, 20, 20"
+            Loaded="OnAddExerciseLoaded"/>
+
+        <Button
+            x:Name="RemoveExerciseButton"
+            Text="- Remove exercise"
+            Clicked="OnRemoveExerciseClicked"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Padding="16, 15"
+            Margin="20, 0, 20, 20"/>
+
+    </VerticalStackLayout>
+</ContentPage>

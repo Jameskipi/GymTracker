@@ -9,5 +9,6 @@
 
     <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" Title="Logout"/>
     <ShellContent ContentTemplate="{DataTemplate pages:HomePage}" Route="HomePage" Title="Home"/>
+    <ShellContent ContentTemplate="{DataTemplate pages:ExercisePage}" Route="ExercisePage"/>
 
 </Shell>

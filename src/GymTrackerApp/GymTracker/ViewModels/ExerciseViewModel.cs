@@ -2,7 +2,7 @@
 
 namespace GymTracker
 {
-    public partial class HomeViewModel : INotifyPropertyChanged
+    public partial class ExerciseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
     }

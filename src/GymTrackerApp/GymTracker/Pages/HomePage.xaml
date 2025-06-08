@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GymTracker.Pages.HomePage">
+             x:Class="GymTracker.Pages.HomePage"
+             Shell.BackgroundColor="LightBlue">
 
     <ScrollView x:Name="MainScrollBox">
         <VerticalStackLayout>
@@ -9,7 +10,8 @@
             <Label 
                 Text="Create or select your workout"
                 VerticalOptions="Center" 
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center" 
+                Margin="20, 20, 20, 0"/>
 
             <Label 
                 Text="Today"
@@ -33,6 +35,15 @@
                 Padding="16, 15"
                 Margin="20, 40, 20, 20"
                 Loaded="OnAddWorkoutLoaded"/>
+
+            <Button
+                x:Name="RemoveWorkoutButton"
+                Text="- Remove workout"
+                Clicked="OnRemoveWorkoutClicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Padding="16, 15"
+                Margin="20, 0, 20, 20"/>
 
             <Label 
                 Text="History"

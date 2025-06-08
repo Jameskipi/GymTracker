@@ -47,6 +47,12 @@ namespace GymTracker.Database
             await _connection.InsertAsync(workout);
         }
 
+        public async Task RemoveWorkoutAsync(int id)
+        {
+            var workout = await _connection.Table<Workouts>().Where(x => x.ID == id).FirstOrDefaultAsync();
+            await _connection.DeleteAsync(workout);
+        }
+
         public async Task DeleteAllUsers()
         {
            await _connection.ExecuteAsync("DELETE FROM Users");
