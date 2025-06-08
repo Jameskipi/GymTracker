@@ -26,6 +26,9 @@ namespace GymTracker
             builder.Services.AddTransient<ExercisePage>();
             builder.Services.AddTransient<ExerciseViewModel>();
 
+            builder.Services.AddTransient<AddExercisePage>();
+            builder.Services.AddTransient<AddExerciseViewModel>();
+
             return builder.Build();
         }
     }

@@ -47,9 +47,11 @@
             StrokeShape="RoundRectangle 10,10,10,10"
             Margin="20, 0, 20, 20">
             
-            <ProgressBar Progress="0.5"
-                     ProgressColor="GreenYellow"
-                     ScaleY="5"/>
+            <ProgressBar
+                    x:Name="OverallProgressBar"
+                    Progress="0.5"
+                    ProgressColor="GreenYellow"
+                    ScaleY="5"/>
         </Border>
 
         <Rectangle HorizontalOptions="Fill" 
