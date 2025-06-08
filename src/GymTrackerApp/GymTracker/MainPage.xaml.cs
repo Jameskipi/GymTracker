@@ -1,23 +1,29 @@
-﻿using System.Threading.Tasks;
+﻿using GymTracker.Database;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 
 namespace GymTracker
 {
     public partial class MainPage : ContentPage
     {
-        Database.UsersDatabase usersDatabase = new Database.UsersDatabase();
-
         public MainPage()
         {
-            InitializeComponent(); 
+            InitializeComponent();
         }
 
         private async Task Login()
         {
-            var users = await usersDatabase.GetUsersAsync();
+            var users = await Constants.appDatabase.GetUsersAsync();
+            var user = users.FirstOrDefault(user => user.Username == LoginEntry.Text.Trim());
 
-            if (users.Any(user => user.Username == LoginEntry.Text.Trim()))
+            if (user != null && user.Password == PasswordEntry.Text.Trim())
             {
+                Constants.currentUserID = user.ID;
                 await Shell.Current.GoToAsync("//HomePage");
+            }
+            else if (user != null && user.Password != PasswordEntry.Text.Trim())
+            {
+                await DisplayAlert("Error", $"Incorrect password for user {LoginEntry.Text}", "OK");
             }
             else
             {
@@ -46,17 +52,22 @@ namespace GymTracker
                 await DisplayAlert("Error", "Username and Password cannot be empty", "OK");
                 return;
             }
-            else if (await usersDatabase.GetUserByLoginAsync(LoginEntry.Text) != null)
+            else if (await Constants.appDatabase.GetUserByLoginAsync(LoginEntry.Text) != null)
             {
                 await DisplayAlert("Error", $"User {LoginEntry.Text} already exists", "OK");
                 return;
             }
 
-            await usersDatabase.CreateUserAsync(new Database.Users
-                {
-                    Username = LoginEntry.Text.Trim(),
-                    Password = PasswordEntry.Text.Trim()
-                });
+            var users = await Constants.appDatabase.GetUsersAsync();
+
+            await Constants.appDatabase.CreateUserAsync(new Database.Users
+            {
+                ID = users.Count,
+                Username = LoginEntry.Text.Trim(),
+                Password = PasswordEntry.Text.Trim()
+            });
+
+            await DisplayAlert("", $"User {LoginEntry.Text} successfully created", "OK");
 
             LoginEntry.Text = string.Empty;
             PasswordEntry.Text = string.Empty;

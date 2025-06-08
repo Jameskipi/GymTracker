@@ -8,11 +8,14 @@ using System.Threading.Tasks;
 
 namespace GymTracker.Database
 {
-    public class Users
+    public class Workouts
     {
-        [PrimaryKey] 
+        [PrimaryKey]
+        [AutoIncrement]
         public int ID { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public int User_ID { get; set; }
+        public DateTime WorkoutDate { get; set; }
+        public string WorkoutName { get; set; } 
     }
 }
+

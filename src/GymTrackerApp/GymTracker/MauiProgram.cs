@@ -16,7 +16,7 @@ namespace GymTracker
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            builder.Services.AddSingleton<Database.UsersDatabase>();
+            builder.Services.AddSingleton<Database.AppDatabase>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif      

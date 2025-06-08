@@ -2,10 +2,51 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GymTracker.Pages.HomePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ScrollView x:Name="MainScrollBox">
+        <VerticalStackLayout>
+
+            <Label 
+                Text="Create or select your workout"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+
+            <Label 
+                Text="Today"
+                VerticalOptions="Center" 
+                HorizontalOptions="Start"
+                TextColor="DarkGray"
+                Padding="10, 3"/>
+            
+            <Rectangle HorizontalOptions="Fill" 
+                Fill="Black"
+                HeightRequest="1"/>
+
+            <VerticalStackLayout x:Name="TodayBox"></VerticalStackLayout>
+
+            <Button
+                x:Name="AddWorkoutButton"
+                Text="+ Add workout"
+                Clicked="OnAddWorkoutClicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Padding="16, 15"
+                Margin="20, 40, 20, 20"
+                Loaded="OnAddWorkoutLoaded"/>
+
+            <Label 
+                Text="History"
+                VerticalOptions="Center" 
+                HorizontalOptions="Start"
+                TextColor="DarkGray"
+                Padding="10, 0"/>
+
+            <Rectangle HorizontalOptions="Fill" 
+                Fill="Black"
+                HeightRequest="1"/>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+    
 </ContentPage>
