@@ -13,18 +13,27 @@
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" />
 
-            <Entry Placeholder="Login" 
-                   Style="{StaticResource Entry}"
-                   SemanticProperties.HeadingLevel="Level2"/>
+            <Entry Placeholder="Login"
+                x:Name="LoginEntry"
+                Style="{StaticResource Entry}"
+                SemanticProperties.HeadingLevel="Level2"/>
 
             <Entry Placeholder="Password" 
+                x:Name="PasswordEntry"
+                IsPassword="True"
                 Style="{StaticResource Entry}"
                 SemanticProperties.HeadingLevel="Level2"/>
 
             <Button
-                x:Name="CounterBtn"
+                x:Name="LoginButton"
                 Text="Sign In"
-                Clicked="OnSubmitClicked"
+                Clicked="OnLoginClicked"
+                HorizontalOptions="Fill" />
+
+            <Button
+                x:Name="RegisterButton"
+                Text="Create user"
+                Clicked="OnRegisterClicked"
                 HorizontalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
