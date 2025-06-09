@@ -53,14 +53,27 @@ namespace GymTracker.Database
             await _connection.DeleteAsync(workout);
         }
 
-        public async Task<List<ExerciseTemplates>> GetTemplatesAsync()
+        public async Task<List<ExerciseTemplates>> GetTemplatesAsync(int id)
         {
-            return await _connection.Table<ExerciseTemplates>().ToListAsync();
+            return await _connection.Table<ExerciseTemplates>().Where(x => x.User_ID == id).ToListAsync();
+        }
+
+        public async Task<List<ExerciseTemplates>> GetSpecificTemplateAsync(string name, int sets, int userid)
+        {
+            return await _connection.Table<ExerciseTemplates>().Where(x => x.ExerciseName == name)
+                .Where(y => y.ExerciseMaxNum == sets)
+                .Where(z => z.User_ID == userid)
+                .ToListAsync();
         }
 
         public async Task CreateTemplateAsync(ExerciseTemplates templates)
         {
             await _connection.InsertAsync(templates);
+        }
+
+        public async Task RemoveTemplateAsync(ExerciseTemplates template)
+        {
+            await _connection.DeleteAsync(template);
         }
 
         public async Task<List<Exercises>> GetExercisesAsync(int id)

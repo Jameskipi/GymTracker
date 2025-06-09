@@ -12,6 +12,7 @@ namespace GymTracker.Database
         [PrimaryKey]
         [AutoIncrement]
         public int ID { get; set; }
+        public int User_ID { get; set; }
         public string ExerciseName { get; set; }
         public int ExerciseMaxNum { get; set; }
     }

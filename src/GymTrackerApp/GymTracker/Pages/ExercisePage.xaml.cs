@@ -104,8 +104,12 @@ public partial class ExercisePage : ContentPage
 
     private async void RemoveExercise(object sender, EventArgs e)
     {
-        int id = Convert.ToInt32(((Button)sender).StyleId.Replace("ExerciseButton", ""));
-        await Constants.appDatabase.RemoveExerciseAsync(id);
+        bool answer = await DisplayAlert("Exercise remove", $"Are you sure you want to remove \n{((Button)sender).Text} ?", "No", "Yes");
+        if (!answer)
+        {
+            int id = Convert.ToInt32(((Button)sender).StyleId.Replace("ExerciseButton", ""));
+            await Constants.appDatabase.RemoveExerciseAsync(id);
+        }
 
         OnRemoveExerciseClicked(sender, e);
         LoadExercises();
