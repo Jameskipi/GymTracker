@@ -4,152 +4,164 @@
              x:Class="GymTracker.Pages.AddExercisePage"
              Title="AddExercisePage"
              Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Entry" TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout>
+
+            <Button
+                x:Name="ReturnButton"
+                Text="&lt;"
+                Clicked="OnReturnClicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"
+                Padding="16, 15"
+                Margin="20, 20, 20, 20"/>
+
+            <Rectangle HorizontalOptions="Fill" 
+                Fill="Black"
+                HeightRequest="1"/>
+
+            <Border Stroke="Blue"
+                StrokeThickness="4"
+                StrokeShape="RoundRectangle 10,10,10,10"
+                Background="LightBlue"
+                Padding="16,15"
+                Margin="20, 20, 20, 20"
+                HorizontalOptions="Center">
+
+                <Label
+                    x:Name="ExerciseLabel"
+                    Text="Exercise"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    FontSize="15"/>
+            </Border>
+
+            <Rectangle HorizontalOptions="Fill" 
+                Fill="Black"
+                HeightRequest="1"/>
+
+            <Picker
+                x:Name="TemplatePicker"
+                Title="Select template"
+                HorizontalTextAlignment="Center"
+                WidthRequest="300"
+                Margin="20, 20, 20, 0">
+            </Picker>
+
+            <Button
+                x:Name="TemplateConfirmButton"
+                Text="Confirm"
+                Clicked="OnTemplateConfirmClicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Padding="16, 15"
+                Margin="20, 20, 20, 20"/>
+
+            <Button
+                x:Name="TemplateRemoveButton"
+                Text="Remove selected template"
+                Clicked="OnTemplateRemoveClicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                TextColor="red"
+                Padding="16, 15"
+                Margin="20, 40, 20, 20"/>
+
+            <Rectangle HorizontalOptions="Fill" 
+                Fill="Black"
+                HeightRequest="1"/>
+
+            <Label
+                Text="OR"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                FontSize="13"
+                Margin="20"/>
+
+            <Rectangle HorizontalOptions="Fill" 
+                Fill="Black"
+                HeightRequest="1"/>
+
+            <Label
+                Text="Create new:"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                FontSize="13"
+                Margin="20, 20, 20, 0"/>
+
+            <HorizontalStackLayout>
+                <Label
+                    x:Name="ExerciseNameLabel"
+                    Text="Exercise Name:"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    FontSize="13"
+                    Margin="20"/>
+                <Entry
+                    x:Name="ExerciseNameEntry"
+                    Style="{StaticResource Entry}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    WidthRequest="250"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Label
+                    x:Name="ExerciseSetsLabel"
+                    Text="Number of Sets:"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    FontSize="13"
+                    Margin="20"/>
+                <Entry
+                    x:Name="ExerciseSetsEntry"
+                    Text="0"
+                    Style="{StaticResource Entry}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    WidthRequest="20"/>
+                <Stepper 
+                    Minimum="0"
+                    Maximum="1000"
+                    Increment="1"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    ValueChanged="OnStepperValueChanged" />
+            </HorizontalStackLayout>
+
+            <Button
+                x:Name="ExerciseConfirmButton"
+                Text="Create"
+                Clicked="OnExerciseConfirmClicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Padding="16, 15"
+                Margin="20, 20, 20, 20"/>
+
+            <Button
+                x:Name="TemplateCreateButton"
+                Text="Create and make a template"
+                Clicked="OnTemplateCreateClicked"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Padding="16, 15"
+                Margin="20, 0, 20, 20"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
     
-    <VerticalStackLayout>
-
-        <Button
-            x:Name="ReturnButton"
-            Text="&lt;"
-            Clicked="OnReturnClicked"
-            VerticalOptions="Center"
-            HorizontalOptions="Start"
-            Padding="16, 15"
-            Margin="20, 20, 20, 20"/>
-
-        <Rectangle HorizontalOptions="Fill" 
-            Fill="Black"
-            HeightRequest="1"/>
-
-        <Border Stroke="Blue"
-            StrokeThickness="4"
-            StrokeShape="RoundRectangle 10,10,10,10"
-            Background="LightBlue"
-            Padding="16,15"
-            Margin="20, 20, 20, 20"
-            HorizontalOptions="Center">
-
-            <Label
-                x:Name="ExerciseLabel"
-                Text="Exercise"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center"
-                FontSize="15"/>
-        </Border>
-
-        <Rectangle HorizontalOptions="Fill" 
-            Fill="Black"
-            HeightRequest="1"/>
-
-        <Picker
-            x:Name="TemplatePicker"
-            Title="Select template"
-            HorizontalTextAlignment="Center"
-            WidthRequest="300"
-            Margin="20, 20, 20, 0">
-        </Picker>
-
-        <Button
-            x:Name="TemplateConfirmButton"
-            Text="Confirm"
-            Clicked="OnTemplateConfirmClicked"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            Padding="16, 15"
-            Margin="20, 20, 20, 20"/>
-
-        <Button
-            x:Name="TemplateRemoveButton"
-            Text="Remove selected template"
-            Clicked="OnTemplateRemoveClicked"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            TextColor="red"
-            Padding="16, 15"
-            Margin="20, 40, 20, 20"/>
-
-        <Rectangle HorizontalOptions="Fill" 
-            Fill="Black"
-            HeightRequest="1"/>
-
-        <Label
-            Text="OR"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center"
-            HorizontalTextAlignment="Center"
-            FontSize="13"
-            Margin="20"/>
-
-        <Rectangle HorizontalOptions="Fill" 
-            Fill="Black"
-            HeightRequest="1"/>
-
-        <Label
-            Text="Create new:"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center"
-            HorizontalTextAlignment="Center"
-            FontSize="13"
-            Margin="20, 20, 20, 0"/>
-
-        <HorizontalStackLayout>
-            <Label
-                x:Name="ExerciseNameLabel"
-                Text="Exercise Name:"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center"
-                HorizontalTextAlignment="Center"
-                FontSize="13"
-                Margin="20"/>
-            <Entry
-                x:Name="ExerciseNameEntry"
-                Style="{StaticResource Entry}"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center"
-                WidthRequest="250"/>
-        </HorizontalStackLayout>
-
-        <HorizontalStackLayout>
-            <Label
-                x:Name="ExerciseSetsLabel"
-                Text="Number of Sets:"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center"
-                FontSize="13"
-                Margin="20"/>
-            <Entry
-                x:Name="ExerciseSetsEntry"
-                Text="0"
-                Style="{StaticResource Entry}"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center"
-                HorizontalTextAlignment="Center"
-                WidthRequest="20"/>
-            <Stepper 
-                Minimum="0"
-                Maximum="1000"
-                Increment="1"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center"
-                ValueChanged="OnStepperValueChanged" />
-        </HorizontalStackLayout>
-
-        <Button
-            x:Name="ExerciseConfirmButton"
-            Text="Create"
-            Clicked="OnExerciseConfirmClicked"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            Padding="16, 15"
-            Margin="20, 20, 20, 20"/>
-
-        <Button
-            x:Name="TemplateCreateButton"
-            Text="Create and make a template"
-            Clicked="OnTemplateCreateClicked"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            Padding="16, 15"
-            Margin="20, 0, 20, 20"/>
-
-    </VerticalStackLayout>
 </ContentPage>

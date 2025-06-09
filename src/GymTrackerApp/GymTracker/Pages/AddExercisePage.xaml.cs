@@ -1,4 +1,5 @@
 using GymTracker.Database;
+using GymTracker.Resources.Raw;
 
 namespace GymTracker.Pages;
 
@@ -26,9 +27,18 @@ public partial class AddExercisePage : ContentPage
 
         TemplatePicker.ItemsSource = exerciseList;
     }
+    private void ResetEntries()
+    {
+        ExerciseNameEntry.IsEnabled = false;
+        ExerciseNameEntry.IsEnabled = true;
+
+        ExerciseSetsEntry.IsEnabled = false;
+        ExerciseSetsEntry.IsEnabled = true;
+    }
 
     private async void OnReturnClicked(object sender, EventArgs e)
     {
+        ResetEntries();
         await Shell.Current.GoToAsync("//ExercisePage");
     }
 
@@ -57,11 +67,18 @@ public partial class AddExercisePage : ContentPage
             ExerciseIsDone = 0
         });
 
+        ResetEntries();
+
         await Shell.Current.GoToAsync("//ExercisePage");
     }
 
     private async void OnExerciseConfirmClicked(object sender, EventArgs e)
     {
+        if (ExerciseNameEntry.Text == "" || ExerciseSetsEntry.Text == "0")
+        {
+            return;
+        }
+
         await Constants.appDatabase.CreateExerciseAsync(new Database.Exercises
         {
             Workout_ID = Constants.currentWorkoutID,
@@ -71,11 +88,18 @@ public partial class AddExercisePage : ContentPage
             ExerciseIsDone = 0
         });
 
+        ResetEntries();
+
         await Shell.Current.GoToAsync("//ExercisePage");
     }
 
     private async void OnTemplateCreateClicked(object sender, EventArgs e)
     {
+        if (ExerciseNameEntry.Text == "" || ExerciseSetsEntry.Text == "0")
+        {
+            return;
+        }
+
         var alreadyExisting = await Constants.appDatabase.GetSpecificTemplateAsync(ExerciseNameEntry.Text, Convert.ToInt32(ExerciseSetsEntry.Text), Constants.currentUserID);
         if (alreadyExisting.Any())
         {
@@ -83,8 +107,8 @@ public partial class AddExercisePage : ContentPage
             return;
         }
 
-        bool answear = await DisplayAlert("Template creation", $"Do you want to create the template: \n{ExerciseNameEntry.Text} - {ExerciseSetsEntry.Text} sets ?", "No", "Yes");
-        if (answear)
+        bool answer = await DisplayAlert("Template creation", $"Do you want to create the template: \n{ExerciseNameEntry.Text} - {ExerciseSetsEntry.Text} sets ?", "Yes", "No");
+        if (!answer)
         {
             return;
         }
@@ -105,6 +129,8 @@ public partial class AddExercisePage : ContentPage
             ExerciseMaxNum = Convert.ToInt32(ExerciseSetsEntry.Text),
         });
 
+        ResetEntries();
+
         await Shell.Current.GoToAsync("//ExercisePage");
     }
 
@@ -119,8 +145,8 @@ public partial class AddExercisePage : ContentPage
         string name = pickerValue.Split('-')[0].Trim();
         int sets = Convert.ToInt32(pickerValue.Split('-')[1].Replace("sets", string.Empty).Trim());
 
-        bool answear = await DisplayAlert("Template remove", $"Are you sure you want to remove the template: \n{name} - {sets} sets ?", "No", "Yes");
-        if (answear)
+        bool answer = await DisplayAlert("Template remove", $"Are you sure you want to remove the template: \n{name} - {sets} sets ?", "Yes", "No");
+        if (!answer)
         {
             return;
         }

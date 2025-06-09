@@ -60,6 +60,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiAsset Include="Constants.cs" />
+	  <MauiAsset Include="Database\AppDatabase.db" />
+	  <MauiAsset Include="Database\DatabaseControl.cs" />
+	  <MauiAsset Include="Database\Exercises.cs" />
+	  <MauiAsset Include="Database\ExerciseTemplates.cs" />
+	  <MauiAsset Include="Database\Users.cs" />
+	  <MauiAsset Include="Database\Workouts.cs" />
+	  <MauiAsset Include="Pages\AddExercisePage.xaml" />
+	  <MauiAsset Include="Pages\AddExercisePage.xaml.cs" />
+	  <MauiAsset Include="Pages\ExercisePage.xaml" />
+	  <MauiAsset Include="Pages\ExercisePage.xaml.cs" />
+	  <MauiAsset Include="Pages\HomePage.xaml" />
+	  <MauiAsset Include="Pages\HomePage.xaml.cs" />
+	  <MauiAsset Include="ViewModels\AddExerciseModel.cs" />
+	  <MauiAsset Include="ViewModels\ExerciseViewModel.cs" />
+	  <MauiAsset Include="ViewModels\HomeViewModel.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />

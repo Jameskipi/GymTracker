@@ -1,4 +1,5 @@
 ﻿using GymTracker.Database;
+using GymTracker.Resources.Raw;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
@@ -9,6 +10,17 @@ namespace GymTracker
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        private void ResetEntries()
+        {
+            LoginEntry.Text = string.Empty;
+            LoginEntry.IsEnabled = false;
+            LoginEntry.IsEnabled = true;
+
+            PasswordEntry.Text = string.Empty;
+            PasswordEntry.IsEnabled = false;
+            PasswordEntry.IsEnabled = true;
         }
 
         private async Task Login()
@@ -30,8 +42,7 @@ namespace GymTracker
                 await DisplayAlert("Error", $"User {LoginEntry.Text} not found", "OK");
             }
 
-            LoginEntry.Text = string.Empty;
-            PasswordEntry.Text = string.Empty;
+            ResetEntries();
         }
 
         private async void OnLoginClicked(object sender, EventArgs e)
@@ -58,8 +69,13 @@ namespace GymTracker
                 return;
             }
 
-            var users = await Constants.appDatabase.GetUsersAsync();
+            bool answer = await DisplayAlert("", $"Are you sure you want to create a new user {LoginEntry.Text}?", "Yes", "No");
+            if (!answer)
+            {
+                return;
+            }
 
+            var users = await Constants.appDatabase.GetUsersAsync();
             await Constants.appDatabase.CreateUserAsync(new Database.Users
             {
                 ID = users.Count,
@@ -69,8 +85,7 @@ namespace GymTracker
 
             await DisplayAlert("", $"User {LoginEntry.Text} successfully created", "OK");
 
-            LoginEntry.Text = string.Empty;
-            PasswordEntry.Text = string.Empty;
+            ResetEntries();
         }
     }
 }

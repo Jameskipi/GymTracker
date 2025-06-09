@@ -1,4 +1,5 @@
 using GymTracker.Database;
+using GymTracker.Resources.Raw;
 using Microsoft.Extensions.Logging.Abstractions;
 using System.Diagnostics;
 
@@ -117,8 +118,8 @@ public partial class HomePage : ContentPage
 
     private async void RemoveWorkout(object sender, EventArgs e)
     {
-        bool answer = await DisplayAlert("Workout remove", $"Are you sure you want to remove\n{((Button)sender).Text} ?", "No", "Yes");
-        if (!answer)
+        bool answer = await DisplayAlert("Workout remove", $"Are you sure you want to remove\n{((Button)sender).Text} ?", "Yes", "No");
+        if (answer)
         {
             int id = Convert.ToInt32(((Button)sender).StyleId.Replace("WorkoutButton", ""));
             await Constants.appDatabase.RemoveWorkoutAsync(id);

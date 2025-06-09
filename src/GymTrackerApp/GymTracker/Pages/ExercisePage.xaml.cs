@@ -1,3 +1,4 @@
+using GymTracker.Resources.Raw;
 using Microsoft.Extensions.Logging.Abstractions;
 
 namespace GymTracker.Pages;
@@ -104,8 +105,8 @@ public partial class ExercisePage : ContentPage
 
     private async void RemoveExercise(object sender, EventArgs e)
     {
-        bool answer = await DisplayAlert("Exercise remove", $"Are you sure you want to remove \n{((Button)sender).Text} ?", "No", "Yes");
-        if (!answer)
+        bool answer = await DisplayAlert("Exercise remove", $"Are you sure you want to remove \n{((Button)sender).Text} ?", "Yes", "No");
+        if (answer)
         {
             int id = Convert.ToInt32(((Button)sender).StyleId.Replace("ExerciseButton", ""));
             await Constants.appDatabase.RemoveExerciseAsync(id);
